@@ -27,10 +27,18 @@ last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 latest_close = parsed_response["Time Series (Daily)"][latest_day]["4. close"]
 #Referenced notes on dictionaries: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/notes/python/datatypes/dictionaries.md
 high_prices = []
+low_prices = []
 for date in dates:
     high_price = float(tsd[date]["2. high"])
     high_prices.append(high_price)
+    low_price = float(tsd[date]["3. low"])
+    low_prices.append(low_price)
+
 recent_high = max(high_prices)
+recent_low = min(low_prices)
+
+
+    
 #breakpoint()
 
 
@@ -45,7 +53,7 @@ print("-----------------------")
 print(f"LATEST DAY: {last_refreshed}")
 print(f"LATEST CLOSE: {to_usd(float(latest_close))}")
 print(f"RECENT HIGH: {to_usd(float(recent_high))}")
-print("RECENT LOW: $999.00")
+print(f"RECENT LOW: {to_usd(float(recent_low))}")
 print("-----------------------")
 print("RECOMMENDATION: BUY!")
 print("BECAUSE: TODO")
