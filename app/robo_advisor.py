@@ -4,6 +4,8 @@
 import requests
 import json
 from datetime import datetime
+import csv
+import os
 
 #function adapted from previous projects/Prof.Rossetti's screencast
 
@@ -56,10 +58,28 @@ print(f"RECENT HIGH: {to_usd(float(recent_high))}")
 print(f"RECENT LOW: {to_usd(float(recent_low))}")
 print("-----------------------")
 print("RECOMMENDATION: BUY!")
+print("-----------------------")
 print("BECAUSE: TODO")
+print("-----------------------")
+
+#Referenced csv notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/e2d64e2d74621f3ff070175954878ba3f1562388/notes/python/modules/csv.md
+csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
+csv_headers = ["timestamp", "open", "high", "low", "close", "volume" ]
+with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writing"
+    writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
+    writer.writeheader()
+    writer.writerow({
+        "timestamp": "TODO",
+        "open": "TODO",
+        "high": "TODO",
+        "low": "TODO",
+        "close": "TODO",
+        "volume": "TODO"
+    })
+
+print("WRITING DATA TO CSV: " + str(csv_file_path))
 print("-----------------------")
 print("HAPPY INVESTING!")
 print("-----------------------")
-
-
+ 
 # ... etc.
