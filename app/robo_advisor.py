@@ -20,11 +20,18 @@ breakpoint()
 
 print("-----------------------")
 print("STOCK SYMBOL: AMZN")
-
 print("-----------------------")
-print("CRUNCHING THE DATA...")
-
+print("REQUESTING STOCK MARKET DATA...")
+print("REQUEST AT: 2018-02-20")
+print("LATEST CLOSE: $1000.00")
+print("RECENT HIGH: $1,222.00")
+print("RECENT LOW: $999.00")
 print("-----------------------")
-print("LATEST CLOSING PRICE: $1,259.19")
+print("RECOMMENDATION: BUY!")
+print("BECAUSE: TODO")
+print("-----------------------")
+print("HAPPY INVESTING!")
+print("-----------------------")
+
 
 # ... etc.
