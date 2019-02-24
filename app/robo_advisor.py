@@ -20,11 +20,17 @@ response = requests.get(request_url)
 
 
 parsed_response = json.loads(response.text)
-dates = list(parsed_response["Time Series (Daily)"].keys()) #assuming first day is in 0 position, may need to sort if not
+tsd = parsed_response["Time Series (Daily)"]
+dates = list(tsd.keys()) #assuming first day is in 0 position, may need to sort if not
 latest_day = dates[0]
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 latest_close = parsed_response["Time Series (Daily)"][latest_day]["4. close"]
-
+#Referenced notes on dictionaries: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/notes/python/datatypes/dictionaries.md
+high_prices = []
+for date in dates:
+    high_price = float(tsd[date]["2. high"])
+    high_prices.append(high_price)
+recent_high = max(high_prices)
 #breakpoint()
 
 
@@ -38,7 +44,7 @@ print("REQUEST AT: ", datetime.now().strftime('%m-%d-%Y %H:%M:%S'))
 print("-----------------------")
 print(f"LATEST DAY: {last_refreshed}")
 print(f"LATEST CLOSE: {to_usd(float(latest_close))}")
-print("RECENT HIGH: $1,222.00")
+print(f"RECENT HIGH: {to_usd(float(recent_high))}")
 print("RECENT LOW: $999.00")
 print("-----------------------")
 print("RECOMMENDATION: BUY!")
