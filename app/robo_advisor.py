@@ -3,7 +3,7 @@
 
 import requests
 import json
-
+from datetime import datetime
 
 
 request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
@@ -23,7 +23,9 @@ print("-----------------------")
 print("STOCK SYMBOL: AMZN")
 print("-----------------------")
 print("REQUESTING STOCK MARKET DATA...")
-print("REQUEST AT: 2018-02-20")
+#Referenced datetime documentation: https://docs.python.org/3/library/datetime.html
+#Referenced datetime strftime behavior documentation: https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior
+print("REQUEST AT: ", datetime.now().strftime('%m-%d-%Y %H:%M:%S'))
 print("-----------------------")
 print(f"LATEST DAY: {last_refreshed}")
 print("LATEST CLOSE: $1000.00")
