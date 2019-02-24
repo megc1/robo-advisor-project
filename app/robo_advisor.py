@@ -18,9 +18,13 @@ response = requests.get(request_url)
 # print(response.text)
 # TODO: write some Python code here to produce the desired functionality...
 
+
 parsed_response = json.loads(response.text)
+dates = list(parsed_response["Time Series (Daily)"].keys()) #assuming first day is in 0 position, may need to sort if not
+latest_day = dates[0]
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
-latest_close = parsed_response["Time Series (Daily)"]["2019-02-20"]["4. close"]
+latest_close = parsed_response["Time Series (Daily)"][latest_day]["4. close"]
+
 #breakpoint()
 
 
