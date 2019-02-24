@@ -6,13 +6,16 @@ import json
 from datetime import datetime
 import csv
 import os
+from dotenv import load_dotenv
 
 #function adapted from previous projects/Prof.Rossetti's screencast
 
 def to_usd(my_price):
     return "${0:,.2f}".format(my_price)
-
-request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
+#Referenced os module notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/7b43ab256e6b79f231f56c0bbf29025325a9414d/notes/python/modules/os.md
+api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
+symbol = "MSFT" #TODO: accept user input
+request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
 
 response = requests.get(request_url)
 # print(type(response)) # <class 'requests.models.Response'>
