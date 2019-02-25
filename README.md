@@ -6,6 +6,7 @@ Setup:
 1. Clone this repository onto your computer.
 
 git clone https://github.com/megc1/robo-advisor-project
+
 cd robo-advisor-project
 
 2. Create a new virtual environment and use pip to install python-dotenv.
@@ -13,6 +14,7 @@ cd robo-advisor-project
 3. Request an API key from www.alphavantage.co.
 
 4. Create a .env file 
+
 touch .env
 
 5. Within your .env file, add the following code, replacing "SECURE_KEY" with your API Key:
