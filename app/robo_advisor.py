@@ -32,11 +32,12 @@ while True:
     else:
         break
 
-
-# print(type(response)) # <class 'requests.models.Response'>
-# print(response.status_code) #>200
-# print(response.text)
-# TODO: write some Python code here to produce the desired functionality...
+while True:
+    acceptable_risk = input("How much risk are you willing to accept? Please enter a number between one and ten, with one being very low risk and ten being very high risk. ")
+    if 1<= float(acceptable_risk) <= 10 :
+       break 
+    else:
+        print("Sorry, that is not a valid level of risk. Please try again.")  
 
 parsed_response = json.loads(response.text)
 tsd = parsed_response["Time Series (Daily)"]
@@ -74,10 +75,16 @@ print(f"LATEST CLOSE: {to_usd(float(latest_close))}")
 print(f"RECENT HIGH: {to_usd(float(recent_high))}")
 print(f"RECENT LOW: {to_usd(float(recent_low))}")
 print("-----------------------")
-print("RECOMMENDATION: BUY!")
+recommend = " "
+risk_percentage = float(acceptable_risk)/20
+if (float(latest_close) - float(recent_low))/float(recent_low) < risk_percentage:
+    recommend = "Do not buy. Stock risk as calculated based on latest closing price and recent lowest price is higher than desired."
+else:
+    recommend = "Buy! Risk as calculated based on latest closing price and recent lowest price is within preferred range."
+
+print("RECOMMENDATION: " + recommend)
 print("-----------------------")
-print("BECAUSE: TODO")
-print("-----------------------")
+
 
 #Referenced csv notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/e2d64e2d74621f3ff070175954878ba3f1562388/notes/python/modules/csv.md
 csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
@@ -101,4 +108,3 @@ print("-----------------------")
 print("HAPPY INVESTING!")
 print("-----------------------")
  
-# ... etc.
