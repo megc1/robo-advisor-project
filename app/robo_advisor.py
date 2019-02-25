@@ -8,21 +8,35 @@ import csv
 import os
 from dotenv import load_dotenv
 
-#function adapted from previous projects/Prof.Rossetti's screencast
 
+#function adapted from previous projects/Prof.Rossetti's screencast
 def to_usd(my_price):
     return "${0:,.2f}".format(my_price)
-#Referenced os module notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/7b43ab256e6b79f231f56c0bbf29025325a9414d/notes/python/modules/os.md
 api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
-symbol = "MSFT" #TODO: accept user input
-request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
 
-response = requests.get(request_url)
+#USER INPUT VALIDATION:
+while True:
+    ticker_symbol = input("Which stock would you like to evaluate? Please enter its ticker symbol here: ")
+    #Makes sure input values are alphabetical
+    #referenced Geeks for Geeks: https://www.geeksforgeeks.org/python-string-isalpha-application/
+    if not ticker_symbol.isalpha():
+        print("That doesn't seem to be a valid stock symbol. Please check its formatting and try again. ")
+    else:
+        #Referenced os module notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/7b43ab256e6b79f231f56c0bbf29025325a9414d/notes/python/modules/os.md
+        request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker_symbol}&apikey={api_key}"
+        response = requests.get(request_url)
+        #Referenced: http://docs.python-requests.org/en/master/user/quickstart/
+        #adapted Error checking from Hiep's solution: https://github.com/hiepnguyen034/robo-stock/blob/master/robo_advisor.py 
+    if "error" in response.text:
+        print("Uh oh! Looks like that stock isn't here. Please restart the program and try another if you'd like.")
+    else:
+        break
+
+
 # print(type(response)) # <class 'requests.models.Response'>
 # print(response.status_code) #>200
 # print(response.text)
 # TODO: write some Python code here to produce the desired functionality...
-
 
 parsed_response = json.loads(response.text)
 tsd = parsed_response["Time Series (Daily)"]
@@ -48,7 +62,7 @@ recent_low = min(low_prices)
 
 
 print("-----------------------")
-print("STOCK SYMBOL: AMZN")
+print("STOCK SYMBOL: " + ticker_symbol)
 print("-----------------------")
 print("REQUESTING STOCK MARKET DATA...")
 #Referenced datetime documentation: https://docs.python.org/3/library/datetime.html
