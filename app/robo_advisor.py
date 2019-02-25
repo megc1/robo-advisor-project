@@ -77,7 +77,7 @@ print(f"RECENT LOW: {to_usd(float(recent_low))}")
 print("-----------------------")
 recommend = " "
 risk_percentage = float(acceptable_risk)/20
-if (float(latest_close) - float(recent_low))/float(recent_low) < risk_percentage:
+if (float(latest_close) - float(recent_low))/float(recent_low) > risk_percentage:
     recommend = "Do not buy. Stock risk as calculated based on latest closing price and recent lowest price is higher than desired."
 else:
     recommend = "Buy! Risk as calculated based on latest closing price and recent lowest price is within preferred range."
@@ -105,6 +105,6 @@ with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writin
 
 print("WRITING DATA TO CSV: " + str(csv_file_path))
 print("-----------------------")
-print("HAPPY INVESTING!")
+print("Happy INVESTING!")
 print("-----------------------")
  
