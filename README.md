@@ -30,4 +30,4 @@ To run:
   iii) conda activate name-of-virtual-environment (enter the name of the virtual environment you created instead of name-of-    virtual-environment)
   iv) python robo_advisor.py
 
-2. Follow the prompts presented on the terminal. Your data will be saved to prices.csv.
+2. Follow the prompts presented on the terminal. Your data will be written to prices.csv.
