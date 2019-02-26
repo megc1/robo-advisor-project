@@ -1,28 +1,35 @@
-# robo-advisor-project
+# Robo-advisor-project
+
 Robo Advisor:
+This is a command-line application which allows users to specify a stock about which to gain relevant data, a buy recommendation based on user risk preferences, and stock price data visualization.
 
-Setup:
+##Package requirements:
+The following Python packages are required to run this program: requests, json, datetime, csv, os, dotenv, matplotlib
 
-1. Clone this repository onto your computer.
+##Setup:
 
+1. First, clone this repository onto your computer.
+```
 git clone https://github.com/megc1/robo-advisor-project
+```
 
+```
 cd robo-advisor-project
+```
 
-2. Create a new virtual environment and use pip to install python-dotenv.
-
-3. Request an API key from www.alphavantage.co.
+3. Request an [AlphaVantage API Key](https://www.alphavantage.co/support/#api-key).
 
 4. Create a .env file 
 
+```
 touch .env
+```
 
 5. Within your .env file, add the following code, replacing "SECURE_KEY" with your API Key:
 ALPHAVANTAGE_API_KEY='SECURE_KEY'
 
-7. Create a csv file called prices.csv
 
-To run:
+##To run:
 
 1. On your terminal:
   i) cd ~/Desktop/robo-advisor-project (if you select a different name of your folder, use that in place of "robo-advisor-project")
