@@ -107,4 +107,12 @@ print("WRITING DATA TO CSV: " + str(csv_file_path))
 print("-----------------------")
 print("Happy INVESTING!")
 print("-----------------------")
- 
+while True:
+     show_graph = input("Would you like to view a graphical representation of this stock's price activity? Enter Y or N.")
+     if show_graph != "Y" and show_graph != "N":
+         print("Sorry, that's not a valid response. Please enter Y or N.")
+     else:
+         if show_graph == "N":
+                break
+         if show_graph == "Y":
+                #enter code to produce graph
