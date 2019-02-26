@@ -1,6 +1,5 @@
 # app/robo_advisor.py
 #REFERENCE: used Prof. Rossetti's screencast
-
 import requests
 import json
 from datetime import datetime
@@ -38,7 +37,7 @@ while True:
        break 
     else:
         print("Sorry, that is not a valid level of risk. Please try again.")  
-
+#adapted from Prof. Rossetti's screencast
 parsed_response = json.loads(response.text)
 tsd = parsed_response["Time Series (Daily)"]
 dates = list(tsd.keys()) #assuming first day is in 0 position, may need to sort if not
@@ -58,10 +57,8 @@ recent_high = max(high_prices)
 recent_low = min(low_prices)
 
 
-    
-#breakpoint()
 
-
+#Adapted from Prof. Rossetti's screencast
 print("-----------------------")
 print("STOCK SYMBOL: " + ticker_symbol)
 print("-----------------------")
@@ -85,7 +82,7 @@ else:
 print("RECOMMENDATION: " + recommend)
 print("-----------------------")
 
-
+#Referenced: Prof. Rossetti's screencast
 #Referenced csv notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/e2d64e2d74621f3ff070175954878ba3f1562388/notes/python/modules/csv.md
 csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
 csv_headers = ["timestamp", "open", "high", "low", "close", "volume" ]
@@ -150,8 +147,3 @@ while True:
                 print("Happy investing!")
                 print("-----------------------")
                 break
-                
-# import matplotlib.pyplot as plt
-# plt.plot([1,2,3,4])
-# plt.ylabel('some numbers')
-# plt.show()
