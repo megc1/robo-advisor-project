@@ -3,10 +3,10 @@
 Robo Advisor:
 This is a command-line application which allows users to specify a stock about which to gain relevant data, a buy recommendation based on user risk preferences, and stock price data visualization.
 
-##Package requirements:
+## Package requirements:
 The following Python packages are required to run this program: requests, json, datetime, csv, os, dotenv, matplotlib
 
-##Setup:
+## Setup:
 
 1. First, clone this repository onto your computer.
 ```
@@ -29,7 +29,7 @@ touch .env
 ALPHAVANTAGE_API_KEY='SECURE_KEY'
 
 
-##To run:
+## To run:
 
 1. On your terminal:
   i) cd ~/Desktop/robo-advisor-project (if you select a different name of your folder, use that in place of "robo-advisor-project")
