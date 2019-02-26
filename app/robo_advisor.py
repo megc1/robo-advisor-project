@@ -115,4 +115,43 @@ while True:
          if show_graph == "N":
                 break
          if show_graph == "Y":
-                #enter code to produce graph
+                print("Note: Once you have viewed your results, please close the graph window to end the program.") #show() function presents script from continuing until window is closed -- haven't found a workaround for that yet so adapted user behavior for now
+                #REFERENCED: https://matplotlib.org/users/pyplot_tutorial.html
+                import matplotlib
+                import matplotlib.pyplot as plt
+                import matplotlib.ticker as ticker
+
+                plotprices = []
+                #Referenced: https://www.programiz.com/python-programming/methods/built-in/sorted
+                plotdates = sorted(dates)
+
+                for d in dates:
+                    close_price = tsd[d]['4. close']
+                    plotprices.append(float(close_price))
+
+                fig, ax = plt.subplots()
+
+                #Axis formatting adapted from: https://matplotlib.org/gallery/ticks_and_spines/major_minor_demo.html
+                #Partly adapted from https://www.programcreek.com/python/example/100917/matplotlib.ticker.LinearLocator
+                ax.xaxis.set_major_locator(plt.LinearLocator(8))
+                
+ 
+                #Adapted from: https://matplotlib.org/gallery/pyplots/dollar_ticks.html
+                formatter = ticker.FormatStrFormatter('$%1.2f')
+                ax.yaxis.set_major_formatter(formatter)
+                
+                
+                plt.plot(plotdates, plotprices)
+                #REFERENCED: https://matplotlib.org/gallery/subplots_axes_and_figures/figure_title.html
+                plt.xlabel('Date')
+                plt.ylabel('Close Price')
+                plt.title('Closing Stock Prices: ' + ticker_symbol)
+                plt.show()
+                print("Happy investing!")
+                print("-----------------------")
+                break
+                
+# import matplotlib.pyplot as plt
+# plt.plot([1,2,3,4])
+# plt.ylabel('some numbers')
+# plt.show()
