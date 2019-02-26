@@ -40,4 +40,4 @@ ALPHAVANTAGE_API_KEY='SECURE_KEY'
  
  iv) python robo_advisor.py
 
-2. Follow the prompts presented on the terminal. Your data will be written to prices.csv.
+2. Follow the prompts presented on the terminal. Your data will be written to a csv file.
