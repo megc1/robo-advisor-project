@@ -1,4 +1,3 @@
-# app/robo_advisor.py
 #REFERENCE: used Prof. Rossetti's screencast
 import requests
 import json
@@ -72,7 +71,7 @@ def transform_response(parsed_response):
 #TODO: write out function
 def write_to_csv():
 
-dates = list(tsd.keys()) #assuming first day is in 0 position, may need to sort if not
+dates = list(tsd.keys()) 
 latest_day = dates[0]
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 latest_close = parsed_response["Time Series (Daily)"][latest_day]["4. close"]
@@ -89,8 +88,6 @@ recent_high = max(high_prices)
 recent_low = min(low_prices)
 
 
-    
-#breakpoint()
 
 print("-----------------------")
 print("STOCK SYMBOL: " + ticker_symbol)
@@ -178,9 +175,4 @@ while True:
                 print("Happy investing!")
                 print("-----------------------")
                 break
-                
-# import matplotlib.pyplot as plt
-# plt.plot([1,2,3,4])
-# plt.ylabel('some numbers')
-# plt.show()
  
