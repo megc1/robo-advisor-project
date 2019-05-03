@@ -1,13 +1,11 @@
 # app/robo_advisor.py
 #REFERENCE: used Prof. Rossetti's screencast
-
 import requests
 import json
 from datetime import datetime
 import csv
 import os
 from dotenv import load_dotenv
-
 
 #function adapted from previous projects/Prof.Rossetti's screencast
 #Basic Challenge: formatting prices (done)
@@ -21,7 +19,6 @@ url_lookup = ""
 def compile_url(ticker_input):
     url_lookup = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker_input}&apikey={api_key}"
     return url_lookup
-
 
 #Intermediate Challenge: Issuing API Requests
 def get_response(ticker):
@@ -56,13 +53,25 @@ while True:
 #Intermediate Challenge: Processing API Responses
 #TODO: write out function
 def transform_response():
-
+    tsd = parsed_response["Time Series (Daily)"]
+    rows = []
+    # adapted from Prof. Rossetti's example solution:
+    for date, daily_prices in tsd.items():
+        row = {
+            "timestamp" : date,
+            "open": float(daily_prices["1. open"]),
+            "high": float(daily_prices["2. high"]),
+            "low": float(daily_prices["3. low"]),
+            "close": float(daily_prices["4. close"]),
+            "volume": int(daily_prices["5. volume"])
+        }
+        rows.append(row)
+    return rows
 
 #Intermediate Challenge: Writing to CSV
 #TODO: write out function
 def write_to_csv():
-    
-tsd = parsed_response["Time Series (Daily)"]
+
 dates = list(tsd.keys()) #assuming first day is in 0 position, may need to sort if not
 latest_day = dates[0]
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
@@ -82,7 +91,6 @@ recent_low = min(low_prices)
 
     
 #breakpoint()
-
 
 print("-----------------------")
 print("STOCK SYMBOL: " + ticker_symbol)
