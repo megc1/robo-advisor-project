@@ -1,7 +1,7 @@
 import pytest
 import os
 
-from app.robo_advisor import to usd(), compile_url(), get_response(), transform_response()
+from app.robo_advisor import to usd(), compile_url(), get_response(), transform_response(), write_to_csv()
 
 def test_to_usd():
     assert to_usd(12312312) == "$123,123.12"
@@ -59,3 +59,4 @@ def test_transform_response():
         {"timestamp": "2019-05-29", "open": 122.4500, "high": 122.8900, "low": 121.3400, "close": 122.5600, "volume": 32345678},
     ]
     assert transform_response(parsed_response) == transformed_response
+
