@@ -1,4 +1,3 @@
-
 #REFERENCE: used Prof. Rossetti's screencast
 import requests
 import json
