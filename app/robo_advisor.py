@@ -79,6 +79,7 @@ def write_to_csv(rows, csv_file_path):
         writer.writeheader()
         for row in rows:
             writer.writerow(row)
+    return True
 
 
 dates = list(tsd.keys()) 
