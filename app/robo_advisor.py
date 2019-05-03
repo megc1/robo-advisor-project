@@ -53,7 +53,6 @@ while True:
     else:
         print("Sorry, that is not a valid level of risk. Please try again.")  
 
-
 tsd = parsed_response["Time Series (Daily)"]
 dates = list(tsd.keys()) #assuming first day is in 0 position, may need to sort if not
 latest_day = dates[0]
