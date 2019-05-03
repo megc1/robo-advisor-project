@@ -1,14 +1,15 @@
 import pytest
 import os
 
-from app.robo_advisor import to usd(), compile_url(), get_response(), transform_response(), write_to_csv()
+from app.robo_advisor import to_usd, compile_url, get_response, transform_response, write_to_csv
 
 def test_to_usd():
-    assert to_usd(12312312) == "$123,123.12"
+    assert to_usd(123123) == "$123,123.00"
 
 def test_compile_url():
-    assert 'AMZN' in compile_url(AMZN)
-    assert 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' in compile_url(AMZN)
+    ticker = 'AMZN'
+    assert ticker in compile_url(ticker)
+    assert 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' in compile_url(ticker)
 
 def test_get_response():
     ticker = "MSFT"
@@ -17,7 +18,7 @@ def test_get_response():
     assert isinstance(parsed_response, dict)
     assert "Meta Data" in parsed_response.keys()
     assert "Time Series (Daily)" in parsed_response.keys()
-    assert parsed_response["Meta Data"]["2. Symbol"] == symbol
+    assert parsed_response["Meta Data"]["2. Symbol"] == ticker
 
 def test_transform_response():
     parsed_response = {
@@ -70,7 +71,7 @@ def test_write_to_csv():
         {"timestamp": "2019-06-01", "open": '99.2798',  "high": "100.8600", "low": "99.1700",  "close": "100.7900", "volume": "28655624"}
     ]
     #referenced and adapted row data from Prof. Rossetti's solution
-    csv_file_path = os.path.join(os.path.dirname(__file__), "test_reports", "test_prices.csv")
+    csv_file_path = os.path.join(os.path.dirname(__file__), "test_prices.csv")
     #TODO: add test_reports and test_prices csv files to test on
     if os.path.isfile(csv_file_path):
         os.remove(csv_file_path)
