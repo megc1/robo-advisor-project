@@ -76,11 +76,13 @@ def write_to_csv(rows, csv_file_path):
             writer.writerow(row)
     return True
 
+
 parsed_response = get_response(ticker_symbol)
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 row = transform_response(parsed_response)
 latest_close = row[0]["close"]
 #Referenced notes on dictionaries: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/notes/python/datatypes/dictionaries.md
+#Get recent high and recent low prices
 for r in row:
     high_prices = r["high"]
     low_prices = r["low"] 
