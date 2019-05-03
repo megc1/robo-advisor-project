@@ -6,12 +6,12 @@ import csv
 import os
 from dotenv import load_dotenv
 
+api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
+
 #function adapted from previous projects/Prof.Rossetti's screencast
 #Basic Challenge: formatting prices (done)
 def to_usd(my_price):
     return "${0:,.2f}".format(my_price)
-
-api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
 
 url_lookup = ""
 #Basic Challenge: Compiling request URLs
