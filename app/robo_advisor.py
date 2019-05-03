@@ -69,7 +69,24 @@ def transform_response(parsed_response):
 
 #Intermediate Challenge: Writing to CSV
 #TODO: write out function
-def write_to_csv():
+def write_to_csv(rows, csv_file_path):
+    
+#Referenced csv notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/e2d64e2d74621f3ff070175954878ba3f1562388/notes/python/modules/csv.md
+csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
+csv_headers = ["timestamp", "open", "high", "low", "close", "volume" ]
+with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writing"
+    writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
+    writer.writeheader()
+    for date in dates: 
+        prices = tsd[date]
+        writer.writerow({
+            "timestamp": date,
+            "open": prices["1. open"],
+            "high": prices["2. high"],
+            "low": prices["3. low"],
+            "close": prices["4. close"],
+            "volume": prices["5. volume"]
+    })
 
 dates = list(tsd.keys()) 
 latest_day = dates[0]
@@ -113,22 +130,7 @@ print("RECOMMENDATION: " + recommend)
 print("-----------------------")
 
 
-#Referenced csv notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/e2d64e2d74621f3ff070175954878ba3f1562388/notes/python/modules/csv.md
-csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
-csv_headers = ["timestamp", "open", "high", "low", "close", "volume" ]
-with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writing"
-    writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
-    writer.writeheader()
-    for date in dates: 
-        prices = tsd[date]
-        writer.writerow({
-            "timestamp": date,
-            "open": prices["1. open"],
-            "high": prices["2. high"],
-            "low": prices["3. low"],
-            "close": prices["4. close"],
-            "volume": prices["5. volume"]
-    })
+
 
 print("WRITING DATA TO CSV: " + str(csv_file_path))
 print("-----------------------")
