@@ -39,14 +39,13 @@ while True:
         print("That doesn't seem to be a valid stock symbol. Please check its formatting and try again. ")
     else:
         #Referenced os module notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/7b43ab256e6b79f231f56c0bbf29025325a9414d/notes/python/modules/os.md
-        return get_response(ticker_symbol)
+        get_response(ticker_symbol)
         #Referenced: http://docs.python-requests.org/en/master/user/quickstart/
         #adapted Error checking from Hiep's solution: https://github.com/hiepnguyen034/robo-stock/blob/master/robo_advisor.py 
     if "error" in response.text:
         print("Uh oh! Looks like that stock isn't here. Please restart the program and try another if you'd like.")
     else:
         break
-
 while True:
     acceptable_risk = input("How much risk are you willing to accept? Please enter a number between one and ten, with one being very low risk and ten being very high risk. ")
     if 1<= float(acceptable_risk) <= 10 :
