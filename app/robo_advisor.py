@@ -22,6 +22,13 @@ def compile_url(ticker_input):
     url_lookup = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker_input}&apikey={api_key}"
     return url_lookup
 
+
+#Intermediate Challenge: Issuing API Requests
+def get_response(ticker):
+    this_url = compile_url(ticker)
+    response = requests.get(this_url)
+
+
 #USER INPUT VALIDATION:
 while True:
     ticker_symbol = input("Which stock would you like to evaluate? Please enter its ticker symbol here: ")
@@ -31,8 +38,7 @@ while True:
         print("That doesn't seem to be a valid stock symbol. Please check its formatting and try again. ")
     else:
         #Referenced os module notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/7b43ab256e6b79f231f56c0bbf29025325a9414d/notes/python/modules/os.md
-        this_url = compile_url(ticker_symbol)
-        response = requests.get(this_url)
+        return get_response(ticker_symbol)
         #Referenced: http://docs.python-requests.org/en/master/user/quickstart/
         #adapted Error checking from Hiep's solution: https://github.com/hiepnguyen034/robo-stock/blob/master/robo_advisor.py 
     if "error" in response.text:
@@ -46,6 +52,7 @@ while True:
        break 
     else:
         print("Sorry, that is not a valid level of risk. Please try again.")  
+
 
 parsed_response = json.loads(response.text)
 tsd = parsed_response["Time Series (Daily)"]
