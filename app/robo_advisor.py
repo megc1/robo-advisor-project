@@ -67,9 +67,6 @@ def transform_response(parsed_response):
     return rows
 
 #Intermediate Challenge: Writing to CSV
-#Referenced csv notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/e2d64e2d74621f3ff070175954878ba3f1562388/notes/python/modules/csv.md
-csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
-
 def write_to_csv(rows, csv_file_path):
     csv_headers = ["timestamp", "open", "high", "low", "close", "volume" ]
     with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writing"
@@ -78,7 +75,6 @@ def write_to_csv(rows, csv_file_path):
         for row in rows:
             writer.writerow(row)
     return True
-
 
 parsed_response = get_response(ticker_symbol)
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
@@ -91,7 +87,10 @@ for r in row:
 recent_high = max(high_prices)
 recent_low = min(low_prices)
 
-
+#Writing to CSV file
+#Referenced csv notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/e2d64e2d74621f3ff070175954878ba3f1562388/notes/python/modules/csv.md
+csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
+write_to_csv(row, csv_file_path)
 
 print("-----------------------")
 print("STOCK SYMBOL: " + ticker_symbol)
@@ -132,11 +131,13 @@ while True:
                 import matplotlib.ticker as ticker
 
                 plotprices = []
+                for r in row:
+                    dates = r["timestamp"]
                 #Referenced: https://www.programiz.com/python-programming/methods/built-in/sorted
                 plotdates = sorted(dates)
 
-                for d in dates:
-                    close_price = tsd[d]['4. close']
+                for r in row:
+                    close_price = r["close"]
                     plotprices.append(float(close_price))
 
                 fig, ax = plt.subplots()
