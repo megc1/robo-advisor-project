@@ -1,9 +1,7 @@
 import pytest
 import os
 
-from app.robo_advisor import to usd(), compile_url(), get_response()
-
-
+from app.robo_advisor import to usd(), compile_url(), get_response(), transform_response()
 
 def test_to_usd():
     assert to_usd(12312312) == "$123,123.12"
@@ -20,4 +18,5 @@ def test_get_response():
     assert "Meta Data" in parsed_response.keys()
     assert "Time Series (Daily)" in parsed_response.keys()
     assert parsed_response["Meta Data"]["2. Symbol"] == symbol
+
 
