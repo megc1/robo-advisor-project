@@ -42,7 +42,7 @@ while True:
         get_response(ticker_symbol)
         #Referenced: http://docs.python-requests.org/en/master/user/quickstart/
         #adapted Error checking from Hiep's solution: https://github.com/hiepnguyen034/robo-stock/blob/master/robo_advisor.py 
-    if "error" in response.text:
+    if "error" in get_response(ticker_symbol).text:
         print("Uh oh! Looks like that stock isn't here. Please restart the program and try another if you'd like.")
     else:
         break
