@@ -1,7 +1,7 @@
 import pytest
 import os
 
-from app.robo_advisor import to usd(), compile_url(), get_response(), transform_response(), write_to_csv()
+from app.robo_advisor import to_usd, compile_url, get_response, transform_response, write_to_csv
 
 def test_to_usd():
     assert to_usd(12312312) == "$123,123.12"
