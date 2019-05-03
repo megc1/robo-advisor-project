@@ -27,7 +27,8 @@ def compile_url(ticker_input):
 def get_response(ticker):
     this_url = compile_url(ticker)
     response = requests.get(this_url)
-
+    parsed_response = json.loads(response.text)
+    return parsed_response
 
 #USER INPUT VALIDATION:
 while True:
@@ -54,7 +55,6 @@ while True:
         print("Sorry, that is not a valid level of risk. Please try again.")  
 
 
-parsed_response = json.loads(response.text)
 tsd = parsed_response["Time Series (Daily)"]
 dates = list(tsd.keys()) #assuming first day is in 0 position, may need to sort if not
 latest_day = dates[0]
