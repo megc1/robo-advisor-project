@@ -52,7 +52,7 @@ while True:
 
 #Intermediate Challenge: Processing API Responses
 #TODO: write out function
-def transform_response():
+def transform_response(parsed_response):
     tsd = parsed_response["Time Series (Daily)"]
     rows = []
     # adapted from Prof. Rossetti's example solution:
