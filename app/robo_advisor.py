@@ -50,7 +50,6 @@ while True:
         print("Sorry, that is not a valid level of risk. Please try again.")  
 
 #Intermediate Challenge: Processing API Responses
-#TODO: write out function
 def transform_response(parsed_response):
     tsd = parsed_response["Time Series (Daily)"]
     rows = []
@@ -68,7 +67,6 @@ def transform_response(parsed_response):
     return rows
 
 #Intermediate Challenge: Writing to CSV
-#TODO: write out function
 #Referenced csv notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/e2d64e2d74621f3ff070175954878ba3f1562388/notes/python/modules/csv.md
 csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
 
