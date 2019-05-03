@@ -121,10 +121,6 @@ else:
 
 print("RECOMMENDATION: " + recommend)
 print("-----------------------")
-
-
-
-
 print("WRITING DATA TO CSV: " + str(csv_file_path))
 print("-----------------------")
 while True:
@@ -155,11 +151,9 @@ while True:
                 #Partly adapted from https://www.programcreek.com/python/example/100917/matplotlib.ticker.LinearLocator
                 ax.xaxis.set_major_locator(plt.LinearLocator(8))
                 
- 
                 #Adapted from: https://matplotlib.org/gallery/pyplots/dollar_ticks.html
                 formatter = ticker.FormatStrFormatter('$%1.2f')
                 ax.yaxis.set_major_formatter(formatter)
-                
                 
                 plt.plot(plotdates, plotprices)
                 #REFERENCED: https://matplotlib.org/gallery/subplots_axes_and_figures/figure_title.html
