@@ -98,9 +98,9 @@ write_to_csv(row, csv_file_path)
 recommend = " "
 risk_percentage = float(acceptable_risk)/20
 if (float(latest_close) - float(recent_low))/float(recent_low) > risk_percentage:
-    recommend = "Do not buy. Stock risk as calculated based on latest closing price and recent lowest price is higher than desired."
+    recommend = "Do not buy. Stock risk, calculated according to the ratio of the difference between latest closing price and recent lowest price to recent lowest price, is higher than desired."
 else:
-    recommend = "Buy! Risk as calculated based on latest closing price and recent lowest price is within preferred range."
+    recommend = "Buy! Risk, calculated according to the ratio of the difference between latest closing price and recent lowest price to recent lowest price, is within preferred range."
 
 print("-----------------------")
 print("STOCK SYMBOL: " + ticker_symbol)
