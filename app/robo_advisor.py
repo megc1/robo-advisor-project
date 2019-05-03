@@ -94,6 +94,14 @@ recent_low = min(low_prices)
 csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
 write_to_csv(row, csv_file_path)
 
+#Calculate recommendation based on user risk tolerance
+recommend = " "
+risk_percentage = float(acceptable_risk)/20
+if (float(latest_close) - float(recent_low))/float(recent_low) > risk_percentage:
+    recommend = "Do not buy. Stock risk as calculated based on latest closing price and recent lowest price is higher than desired."
+else:
+    recommend = "Buy! Risk as calculated based on latest closing price and recent lowest price is within preferred range."
+
 print("-----------------------")
 print("STOCK SYMBOL: " + ticker_symbol)
 print("-----------------------")
@@ -107,13 +115,6 @@ print(f"LATEST CLOSE: {to_usd(float(latest_close))}")
 print(f"RECENT HIGH: {to_usd(float(recent_high))}")
 print(f"RECENT LOW: {to_usd(float(recent_low))}")
 print("-----------------------")
-recommend = " "
-risk_percentage = float(acceptable_risk)/20
-if (float(latest_close) - float(recent_low))/float(recent_low) > risk_percentage:
-    recommend = "Do not buy. Stock risk as calculated based on latest closing price and recent lowest price is higher than desired."
-else:
-    recommend = "Buy! Risk as calculated based on latest closing price and recent lowest price is within preferred range."
-
 print("RECOMMENDATION: " + recommend)
 print("-----------------------")
 print("WRITING DATA TO CSV: " + str(csv_file_path))
@@ -161,4 +162,3 @@ while True:
                 print("Happy investing!")
                 print("-----------------------")
                 break
- 
