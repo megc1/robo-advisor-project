@@ -19,4 +19,43 @@ def test_get_response():
     assert "Time Series (Daily)" in parsed_response.keys()
     assert parsed_response["Meta Data"]["2. Symbol"] == symbol
 
-
+def test_transform_response():
+    parsed_response = {
+        "Meta Data": {
+            "1. Information": "Daily Prices (open, high, low, close) and Volumes",
+            "2. Symbol": "MSFT",
+            "3. Last Refreshed": "2019-05-01",
+            "4. Output Size": "Full size",
+            "5. Time Zone": "US/Eastern"
+        },
+        "Time Series (Daily)": {
+            "2019-05-31": {
+                "1. open": "123.4500",
+                "2. high": "123.8900",
+                "3. low": "120.3400",
+                "4. close": "123.5600",
+                "5. volume": "12345678"
+            },
+            "2019-05-30": {
+                "1. open": "124.5600",
+                "2. high": "124.8900",
+                "3. low": "123.3400",
+                "4. close": "124.5600",
+                "5. volume": "22345678"
+            },
+            "2019-05-29": {
+                "1. open": "122.4500",
+                "2. high": "122.8900",
+                "3. low": "121.3400",
+                "4. close": "122.5600",
+                "5. volume": "32345678"
+            }
+        }
+    }
+    #Referenced Prof. Rossetti's solution
+    transformed_response = [
+        {"timestamp": "2019-05-31", "open": 123.45, "high": 123.89, "low": 120.34, "close": 123.56, "volume": 12345678},
+        {"timestamp": "2019-05-30", "open": 124.56, "high": 124.89, "low": 123.34, "close": 124.56, "volume": 22345678},
+        {"timestamp": "2019-05-29", "open": 122.45, "high": 122.89, "low": 121.34, "close": 122.56, "volume": 32345678},
+    ]
+    assert transform_response(parsed_response) == transformed_response
