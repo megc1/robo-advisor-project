@@ -80,19 +80,6 @@ def write_to_csv(rows, csv_file_path):
         for row in rows:
             writer.writerow(row)
 
-    
-
-
-    for date in dates: 
-        prices = tsd[date]
-        writer.writerow({
-            "timestamp": date,
-            "open": prices["1. open"],
-            "high": prices["2. high"],
-            "low": prices["3. low"],
-            "close": prices["4. close"],
-            "volume": prices["5. volume"]
-    })
 
 dates = list(tsd.keys()) 
 latest_day = dates[0]
