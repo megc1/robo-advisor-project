@@ -54,8 +54,8 @@ def test_transform_response():
     }
     #Referenced Prof. Rossetti's solution
     transformed_response = [
-        {"timestamp": "2019-05-31", "open": 123.45, "high": 123.89, "low": 120.34, "close": 123.56, "volume": 12345678},
-        {"timestamp": "2019-05-30", "open": 124.56, "high": 124.89, "low": 123.34, "close": 124.56, "volume": 22345678},
-        {"timestamp": "2019-05-29", "open": 122.45, "high": 122.89, "low": 121.34, "close": 122.56, "volume": 32345678},
+        {"timestamp": "2019-05-31", "open": 123.4500, "high": 123.8900, "low": 120.3400, "close": 123.5600, "volume": 12345678},
+        {"timestamp": "2019-05-30", "open": 124.5600, "high": 124.8900, "low": 123.3400, "close": 124.5600, "volume": 22345678},
+        {"timestamp": "2019-05-29", "open": 122.4500, "high": 122.8900, "low": 121.3400, "close": 122.5600, "volume": 32345678},
     ]
     assert transform_response(parsed_response) == transformed_response
