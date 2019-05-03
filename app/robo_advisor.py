@@ -82,19 +82,14 @@ def write_to_csv(rows, csv_file_path):
     return True
 
 
-dates = list(tsd.keys()) 
-latest_day = dates[0]
+parsed_response = get_response(ticker_symbol)
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
-latest_close = parsed_response["Time Series (Daily)"][latest_day]["4. close"]
+row = transform_response(parsed_response)
+latest_close = row[0]["4. close"]
 #Referenced notes on dictionaries: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/notes/python/datatypes/dictionaries.md
-high_prices = []
-low_prices = []
-for date in dates:
-    high_price = float(tsd[date]["2. high"])
-    high_prices.append(high_price)
-    low_price = float(tsd[date]["3. low"])
-    low_prices.append(low_price)
-
+for r in row:
+    high_prices = r["2. high"]
+    low_prices = r["3. low"] 
 recent_high = max(high_prices)
 recent_low = min(low_prices)
 
