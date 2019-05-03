@@ -53,6 +53,15 @@ while True:
     else:
         print("Sorry, that is not a valid level of risk. Please try again.")  
 
+#Intermediate Challenge: Processing API Responses
+#TODO: write out function
+def transform_response():
+
+
+#Intermediate Challenge: Writing to CSV
+#TODO: write out function
+def write_to_csv():
+    
 tsd = parsed_response["Time Series (Daily)"]
 dates = list(tsd.keys()) #assuming first day is in 0 position, may need to sort if not
 latest_day = dates[0]
