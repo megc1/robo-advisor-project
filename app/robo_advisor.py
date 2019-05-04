@@ -54,17 +54,13 @@ def write_to_csv(rows, csv_file_path):
     return True
 
 
-
-
-
-
-
-
 if __name__ == "__main__":
+
 
     #USER INPUT VALIDATION:
     while True:
         ticker_symbol = input("Which stock would you like to evaluate? Please enter its ticker symbol here: ")
+        
         #Makes sure input values are alphabetical
         #referenced Geeks for Geeks: https://www.geeksforgeeks.org/python-string-isalpha-application/
         if not ticker_symbol.isalpha():
@@ -74,7 +70,7 @@ if __name__ == "__main__":
             get_response(ticker_symbol)
             #Referenced: http://docs.python-requests.org/en/master/user/quickstart/
             #adapted Error checking from Hiep's solution: https://github.com/hiepnguyen034/robo-stock/blob/master/robo_advisor.py 
-        if "error" in get_response(ticker_symbol).text:
+        if "error" in get_response(ticker_symbol):
             print("Uh oh! Looks like that stock isn't here. Please restart the program and try another if you'd like.")
         else:
             break
@@ -87,7 +83,8 @@ if __name__ == "__main__":
 
 
     parsed_response = get_response(ticker_symbol)
-    last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
+    metadata = parsed_response["Meta Data"]
+    last_refreshed = metadata["3. Last Refreshed"]
     row = transform_response(parsed_response)
     latest_close = row[0]["close"]
     #Referenced notes on dictionaries: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/notes/python/datatypes/dictionaries.md
