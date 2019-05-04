@@ -55,12 +55,9 @@ def write_to_csv(rows, csv_file_path):
 
 
 if __name__ == "__main__":
-
-
     #USER INPUT VALIDATION:
     while True:
         ticker_symbol = input("Which stock would you like to evaluate? Please enter its ticker symbol here: ")
-        
         #Makes sure input values are alphabetical
         #referenced Geeks for Geeks: https://www.geeksforgeeks.org/python-string-isalpha-application/
         if not ticker_symbol.isalpha():
@@ -80,8 +77,6 @@ if __name__ == "__main__":
             break 
         else:
             print("Sorry, that is not a valid level of risk. Please try again.")  
-
-
     parsed_response = get_response(ticker_symbol)
     metadata = parsed_response["Meta Data"]
     last_refreshed = metadata["3. Last Refreshed"]
@@ -93,12 +88,10 @@ if __name__ == "__main__":
     low_prices = [r["low"] for r in row] 
     recent_high = max(high_prices)
     recent_low = min(low_prices)
-
     #Writing to CSV file
     #Referenced csv notes: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/e2d64e2d74621f3ff070175954878ba3f1562388/notes/python/modules/csv.md
     csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
     write_to_csv(row, csv_file_path)
-
     #Calculate recommendation based on user risk tolerance
     recommend = " "
     risk_percentage = float(acceptable_risk)/20
@@ -106,7 +99,6 @@ if __name__ == "__main__":
         recommend = "Do not buy. Stock risk, calculated according to the ratio of the difference between latest closing price and recent lowest price to recent lowest price, is higher than desired."
     else:
         recommend = "Buy! Risk, calculated according to the ratio of the difference between latest closing price and recent lowest price to recent lowest price, is within preferred range."
-
     print("-----------------------")
     print("STOCK SYMBOL: " + ticker_symbol)
     print("-----------------------")
@@ -137,25 +129,18 @@ if __name__ == "__main__":
                     import matplotlib
                     import matplotlib.pyplot as plt
                     import matplotlib.ticker as ticker
-
                     plotdates = []
                     dates = [r["timestamp"] for r in row]
                     #Referenced: https://www.programiz.com/python-programming/methods/built-in/sorted
                     plotdates = sorted(dates)
-
-                
                     close_price = [r["close"] for r in row]
-
                     fig, ax = plt.subplots()
-
                     #Axis formatting adapted from: https://matplotlib.org/gallery/ticks_and_spines/major_minor_demo.html
                     #Partly adapted from https://www.programcreek.com/python/example/100917/matplotlib.ticker.LinearLocator
-                    ax.xaxis.set_major_locator(plt.LinearLocator(8))
-                    
+                    ax.xaxis.set_major_locator(plt.LinearLocator(8))                
                     #Adapted from: https://matplotlib.org/gallery/pyplots/dollar_ticks.html
                     formatter = ticker.FormatStrFormatter('$%1.2f')
-                    ax.yaxis.set_major_formatter(formatter)
-                    
+                    ax.yaxis.set_major_formatter(formatter)                    
                     plt.plot(plotdates, close_price)
                     #REFERENCED: https://matplotlib.org/gallery/subplots_axes_and_figures/figure_title.html
                     plt.xlabel('Date')
