@@ -89,9 +89,8 @@ if __name__ == "__main__":
     latest_close = row[0]["close"]
     #Referenced notes on dictionaries: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/notes/python/datatypes/dictionaries.md
     #Get recent high and recent low prices
-    for r in row:
-        high_prices = r["high"]
-        low_prices = r["low"] 
+    high_prices = [r["high"] for r in row] 
+    low_prices = [r["low"] for r in row] 
     recent_high = max(high_prices)
     recent_low = min(low_prices)
 
@@ -139,15 +138,13 @@ if __name__ == "__main__":
                     import matplotlib.pyplot as plt
                     import matplotlib.ticker as ticker
 
-                    plotprices = []
-                    for r in row:
-                        dates = r["timestamp"]
+                    plotdates = []
+                    dates = [r["timestamp"] for r in row]
                     #Referenced: https://www.programiz.com/python-programming/methods/built-in/sorted
                     plotdates = sorted(dates)
 
-                    for r in row:
-                        close_price = r["close"]
-                        plotprices.append(float(close_price))
+                
+                    close_price = [r["close"] for r in row]
 
                     fig, ax = plt.subplots()
 
@@ -159,7 +156,7 @@ if __name__ == "__main__":
                     formatter = ticker.FormatStrFormatter('$%1.2f')
                     ax.yaxis.set_major_formatter(formatter)
                     
-                    plt.plot(plotdates, plotprices)
+                    plt.plot(plotdates, close_price)
                     #REFERENCED: https://matplotlib.org/gallery/subplots_axes_and_figures/figure_title.html
                     plt.xlabel('Date')
                     plt.ylabel('Close Price')
