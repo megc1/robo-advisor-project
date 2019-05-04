@@ -46,7 +46,7 @@ def transform_response(parsed_response):
 #Intermediate Challenge: Writing to CSV
 def write_to_csv(rows, csv_file_path):
     csv_headers = ["timestamp", "open", "high", "low", "close", "volume" ]
-    with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writing"
+    with open(csv_file_path, "w") as csv_file: 
         writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
         writer.writeheader()
         for row in rows:
@@ -76,10 +76,10 @@ if __name__ == "__main__":
         if 1<= float(acceptable_risk) <= 10 :
             break 
         else:
-            print("Sorry, that is not a valid level of risk. Please try again.")  
+            print("Sorry, that is not a valid level of risk. Please try again.") 
+
     parsed_response = get_response(ticker_symbol)
-    metadata = parsed_response["Meta Data"]
-    last_refreshed = metadata["3. Last Refreshed"]
+    last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
     row = transform_response(parsed_response)
     latest_close = row[0]["close"]
     #Referenced notes on dictionaries: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/notes/python/datatypes/dictionaries.md
@@ -118,35 +118,35 @@ if __name__ == "__main__":
     print("-----------------------")
     while True:
         show_graph = input("Would you like to view a graphical representation of this stock's price activity? Enter Y or N.")
-        if show_graph != "Y" and show_graph != "N":
-            print("Sorry, that's not a valid response. Please enter Y or N.")
+        if show_graph == "N" or show_graph == "n":
+                break
         else:
-            if show_graph == "N":
-                    break
-            if show_graph == "Y":
-                    print("Note: Once you have viewed your results, please close the graph window to end the program.") #show() function presents script from continuing until window is closed -- haven't found a workaround for that so adapted user behavior for now
-                    #REFERENCED: https://matplotlib.org/users/pyplot_tutorial.html
-                    import matplotlib
-                    import matplotlib.pyplot as plt
-                    import matplotlib.ticker as ticker
-                    plotdates = []
-                    dates = [r["timestamp"] for r in row]
-                    #Referenced: https://www.programiz.com/python-programming/methods/built-in/sorted
-                    plotdates = sorted(dates)
-                    close_price = [r["close"] for r in row]
-                    fig, ax = plt.subplots()
-                    #Axis formatting adapted from: https://matplotlib.org/gallery/ticks_and_spines/major_minor_demo.html
-                    #Partly adapted from https://www.programcreek.com/python/example/100917/matplotlib.ticker.LinearLocator
-                    ax.xaxis.set_major_locator(plt.LinearLocator(8))                
-                    #Adapted from: https://matplotlib.org/gallery/pyplots/dollar_ticks.html
-                    formatter = ticker.FormatStrFormatter('$%1.2f')
-                    ax.yaxis.set_major_formatter(formatter)                    
-                    plt.plot(plotdates, close_price)
-                    #REFERENCED: https://matplotlib.org/gallery/subplots_axes_and_figures/figure_title.html
-                    plt.xlabel('Date')
-                    plt.ylabel('Close Price')
-                    plt.title('Closing Stock Prices: ' + ticker_symbol)
-                    plt.show()
-                    print("Happy investing!")
-                    print("-----------------------")
-                    break
+            if show_graph == "Y" or show_graph == "y":
+                print("Note: Once you have viewed your results, please close the graph window to end the program.") #show() function presents script from continuing until window is closed -- haven't found a workaround for that so adapted user behavior for now
+                #REFERENCED: https://matplotlib.org/users/pyplot_tutorial.html
+                import matplotlib
+                import matplotlib.pyplot as plt
+                import matplotlib.ticker as ticker
+                plotdates = []
+                dates = [r["timestamp"] for r in row]
+                #Referenced: https://www.programiz.com/python-programming/methods/built-in/sorted
+                plotdates = sorted(dates)
+                close_price = [r["close"] for r in row]
+                fig, ax = plt.subplots()
+                #Axis formatting adapted from: https://matplotlib.org/gallery/ticks_and_spines/major_minor_demo.html
+                #Partly adapted from https://www.programcreek.com/python/example/100917/matplotlib.ticker.LinearLocator
+                ax.xaxis.set_major_locator(plt.LinearLocator(8))                
+                #Adapted from: https://matplotlib.org/gallery/pyplots/dollar_ticks.html
+                formatter = ticker.FormatStrFormatter('$%1.2f')
+                ax.yaxis.set_major_formatter(formatter)                    
+                plt.plot(plotdates, close_price)
+                #REFERENCED: https://matplotlib.org/gallery/subplots_axes_and_figures/figure_title.html
+                plt.xlabel('Date')
+                plt.ylabel('Close Price')
+                plt.title('Closing Stock Prices: ' + ticker_symbol)
+                plt.show()
+                print("Happy investing!")
+                print("-----------------------")
+                break
+            else:            
+                print("Sorry, that's not a valid response. Please enter Y or N.")
