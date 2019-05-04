@@ -63,6 +63,14 @@ ALPHAVANTAGE_API_KEY='SECURE_KEY'
 ```
 2. Follow the prompts presented on the terminal. Your data will be written to a csv file.
 
+## To test
+
+This program can be tested using pytest, which can be downloaded to the virtual environment to run tests from the command line with the pytest command: 
+```sh
+pytest 
+```
+It is recommended to deploy the project to a continuous integration service, such as [Travis CI](https://travis-ci.org/) for continuous automated testing as further modifications are made to the code. 
+
 ## License:
 
 This product is licensed under the MIT License. For more details, see [LICENSE.md](LICENSE.md)
