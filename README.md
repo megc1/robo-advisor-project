@@ -60,3 +60,7 @@ ALPHAVANTAGE_API_KEY='SECURE_KEY'
   iv) python robo_advisor.py
 ```
 2. Follow the prompts presented on the terminal. Your data will be written to a csv file.
+
+## License:
+
+This product is licensed under the MIT License. For more details, see [LICENSE.md](LICENSE.md)
