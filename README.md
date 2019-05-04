@@ -24,6 +24,9 @@ The following Python packages are required to run this program:
 
 ## Setup:
 
+### Credentials:
+You must obtain an [AlphaVantage API Key](https://www.alphavantage.co/support/#api-key) to run this program.
+
 ### Installation:
 1. First, clone or download this repository onto your computer.
 ```
@@ -34,15 +37,13 @@ git clone https://github.com/megc1/robo-advisor-project
 cd robo-advisor-project
 ```
 
-3. Request an [AlphaVantage API Key](https://www.alphavantage.co/support/#api-key).
-
-4. Create a .env file 
+3. Create a .env file 
 
 ```
 touch .env
 ```
 
-5. Within your .env file, add the following code, replacing "SECURE_KEY" with your API Key:
+4. Within your .env file, add the following code, replacing "SECURE_KEY" with your API Key:
 ```sh
 ALPHAVANTAGE_API_KEY='SECURE_KEY'
 ```
