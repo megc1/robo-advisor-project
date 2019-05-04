@@ -1,10 +1,19 @@
 # Robo Advisor
+[![Build Status](https://travis-ci.org/megc1/robo-advisor-project.svg?branch=master)](https://travis-ci.org/megc1/robo-advisor-project)
 
+## About
 This is a command-line application which allows users to specify a stock about which to gain relevant data, a buy recommendation based on user risk preferences, and stock price data visualization.
 
-## Package requirements:
+
+## To get started:
+
+### Prerequisites:
+* Anaconda 3.7
+* Python 3.7
+* Pip
+
+### Package requirements:
 The following Python packages are required to run this program: 
-```sh
    * requests 
    * json 
    * datetime 
@@ -12,10 +21,11 @@ The following Python packages are required to run this program:
    * os 
    * dotenv 
    * matplotlib
-```
+
 ## Setup:
 
-1. First, clone this repository onto your computer.
+### Installation:
+1. First, clone or download this repository onto your computer.
 ```
 git clone https://github.com/megc1/robo-advisor-project
 ```
@@ -40,7 +50,7 @@ ALPHAVANTAGE_API_KEY='SECURE_KEY'
 ## To run:
 
 1. On your terminal:
-```sh
+```
   i) cd ~/Desktop/robo-advisor-project (if you select a different name of your folder, use that in place of "robo-advisor-project")
   
   ii) cd app
