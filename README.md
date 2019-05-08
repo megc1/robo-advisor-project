@@ -65,7 +65,11 @@ ALPHAVANTAGE_API_KEY='SECURE_KEY'
 
 ## To test
 
-This program can be tested using pytest, which can be downloaded to the virtual environment to run tests from the command line with the pytest command: 
+Install pytest in your virtual environment:
+```sh
+pip install pytest
+```
+This program can be tested using the pytest command in the command line: 
 ```sh
 pytest 
 ```
